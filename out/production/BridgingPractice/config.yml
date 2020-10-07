@@ -1,0 +1,12 @@
+settings:
+  teleportY: 95
+
+world: "flatroom"
+
+teleportLocations:
+  firstLocation:
+    x: 100
+    y: 100
+    z: 100
+    yaw: 100
+    pitch: 100

@@ -1,0 +1,10 @@
+name: BridgingPractice
+authors: [max11, ItzCodita]
+version: 1.0
+main: ro.bridgingpractice.Main
+
+commands:
+  setlocation:
+
+
+
