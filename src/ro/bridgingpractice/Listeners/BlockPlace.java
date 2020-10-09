@@ -20,8 +20,6 @@ public class BlockPlace implements Listener {
 
     BlockTracker blockTracker;
 
-    public HashMap<UUID, List<Block>> hashMap = new HashMap<>();
-
     public BlockPlace(Main plugin, BlockTracker blockTracker){
 
         this.plugin = plugin;

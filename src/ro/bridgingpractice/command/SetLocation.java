@@ -6,6 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import ro.bridgingpractice.Main;
+import ro.bridgingpractice.Util.Util;
 
 
 public class SetLocation implements CommandExecutor {
@@ -27,6 +28,14 @@ public class SetLocation implements CommandExecutor {
 
             Player player = (Player) commandSender;
 
+            if(!player.hasPermission("bp.setlocation")){
+
+                player.sendMessage(Util.noPermissions);
+
+                return false;
+
+            }
+
             Location location = player.getLocation();
 
             double x = location.getX();
@@ -46,11 +55,13 @@ public class SetLocation implements CommandExecutor {
             plugin.getConfig().set("teleportLocations.firstLocation.pitch", pitch);
             plugin.saveConfig();
 
-            player.sendMessage("Location set!");
+            player.sendMessage(Util.format("&l&7Locatia a fost setata!"));
 
             return true;
 
         }
+
         return false;
+
     }
 }

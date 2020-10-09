@@ -13,6 +13,9 @@ public class BlockTracker {
     public List<Block> list = new ArrayList<>();
 
     public int getBlocksPlaced(UUID uuid){
+
+        if (blocksMap.get(uuid).size() == 0) return 0;
+
         return blocksMap.get(uuid).size();
     }
 

@@ -7,8 +7,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import ro.bridgingpractice.Main;
 import ro.bridgingpractice.Util.BlockTracker;
 import ro.bridgingpractice.Util.GiveItems;
+import ro.bridgingpractice.Util.Locations;
 import ro.bridgingpractice.Util.Tracker;
 import ro.bridgingpractice.scoreboard.Scoreboard;
 
@@ -16,17 +18,20 @@ import java.util.UUID;
 
 public class PlayerJoin implements Listener {
 
-    private Tracker tracker;
+    private final Tracker tracker;
 
-    private BlockTracker blockTracker;
+    private final BlockTracker blockTracker;
 
-    private Scoreboard scoreboard;
+    private final Scoreboard scoreboard;
 
-    public PlayerJoin(Tracker tracker, Scoreboard scoreboard, BlockTracker blockTracker){
+    private final Main plugin;
+
+    public PlayerJoin(Tracker tracker, Scoreboard scoreboard, BlockTracker blockTracker, Main plugin){
 
         this.tracker = tracker;
         this.scoreboard = scoreboard;
         this.blockTracker = blockTracker;
+        this.plugin = plugin;
 
     }
 
@@ -34,6 +39,10 @@ public class PlayerJoin implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event){
 
         GiveItems.giveOnJoin(event.getPlayer());
+
+        Locations locations = new Locations(plugin);
+
+        event.getPlayer().teleport(locations.getLocation());
 
         scoreboard.createBoard(event.getPlayer());
         scoreboard.run(event.getPlayer());
